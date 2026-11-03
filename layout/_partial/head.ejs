@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = __('archive_a');
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    title = __('tag') + ': ' + page.tag;
+  }
+  %>
+  <title itemprop="name"><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <% if (theme.favicon){ %>
+    <link rel="shortcut icon" href="<%- theme.favicon %>">
+  <% } %>
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <link rel="stylesheet" href="<%- theme.libs.css.googlefonts %>" media="all">
+  <div><!--依然是包装的div-->
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="stylesheet" href="<%- theme.libs.css.style %>" type="text/css" media="all" id="saukra_css-css">
+    <link rel="stylesheet" href="<%- theme.libs.css.fancybox %>" media="all">  
+    <link rel="stylesheet" href="<%- theme.libs.css.lib %>" media="all">
+    <link rel="stylesheet" href="<%- theme.libs.css.font %>" media="all">
+    <link rel="stylesheet" href="<%- theme.libs.css.insight %>" media="all">
+    <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.tags %>" media="all">
+    <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.sharejs %>" media="all">
+    <!-- 自定义logo及字体引入 -->
+    <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.logo.logo %>">
+    <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.logo.logo_fonts %>">
+    <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.typeface %>">
+    <!-- <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.cute_font %>"> -->
+
+    <script src="<%- theme.libs.js.jquery %>"></script>
+
+    <!-- 按需加载：echarts / artitalk / waline 只在真正用到时才去拉
+        · echarts  → 归档页日历（_widget/post-calendar.ejs）、统计页图表（_widget/post-charts.ejs）
+        · artitalk → 说说页（artitalk.ejs）
+        · waline   → 评论区（_partial/waline.ejs）
+        注意：pjax 换页不会重新加载 <head>，所以不能改成"只在某页静态引入"，
+        只能在用到的地方 LazyLib.load(name).then(fn)；同一个库只会拉一次。 -->
+    <script>
+      window.LazyLib = (function () {
+        var SRC = {
+          artitalk: '<%- theme.libs.js.artitalk %>',
+          echarts: '<%= theme.libs.js.echarts %>',
+          waline: '<%- theme.libs.js.waline %>'
+        }
+        var GLOBAL_NAME = { artitalk: 'Artitalk', echarts: 'echarts', waline: 'Waline' }
+        var done = {}
+        var pending = {}
+
+        function load (name) {
+          if (done[name]) return Promise.resolve()
+          if (pending[name]) return pending[name]
+          var src = SRC[name]
+          if (!src) return Promise.reject(new Error('[LazyLib] 未配置 ' + name + ' 的地址'))
+          // 已经由别处加载过（例如上一次 pjax 换页时拉过）
+          if (GLOBAL_NAME[name] && window[GLOBAL_NAME[name]]) {
+            done[name] = true
+            return Promise.resolve()
+          }
+          pending[name] = new Promise(function (resolve, reject) {
+            var s = document.createElement('script')
+            s.src = src
+            s.async = true
+            s.onload = function () {
+              done[name] = true
+              delete pending[name]
+              resolve()
+            }
+            s.onerror = function () {
+              delete pending[name]
+              reject(new Error('[LazyLib] 加载失败：' + src))
+            }
+            document.head.appendChild(s)
+          })
+          return pending[name]
+        }
+
+        return {
+          load: load, // LazyLib.load('echarts').then(fn)
+          loaded: function (name) { return !!done[name] }
+        }
+      })()
+    </script>
+
+    <link rel="stylesheet" href="<%- theme.libs.css.waline %>"/>
+    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline-meta.css"/>
+    <link rel="stylesheet" type="text/css" href="<%- theme.libs.css.sidebar %>">
+  </div>
+  <!-- 分析 -->
+  <%- partial('_partial/google-analytics') %>
+  <%- partial('_partial/baidu-analytics') %>
+  
+  <script>
+    /*Initial Variables*///配置项传参
+    var mashiro_option = new Object();
+    var mashiro_global = new Object();
+    mashiro_option.NProgressON = true;
+    mashiro_option.email_domain = "";
+    mashiro_option.email_name = "";
+    mashiro_option.cookie_version_control = "";
+    mashiro_option.qzone_autocomplete = false;
+    mashiro_option.site_name = "<%- theme.prefixName%><%- theme.siteName%>";
+    mashiro_option.author_name = "<%- theme.siteName%>";
+    mashiro_option.site_url = "<%- theme.url%>";
+    mashiro_option.mathjax = "<%= theme.mathjax %>";
+    mashiro_option.copyright_enable = "<%= theme.copyright.enable %>" ;
+    mashiro_option.copyright_minCharNumber = parseInt("<%= theme.copyright.minCharNumber %>") ;
+    mashiro_option.copyright_description = "<%= theme.copyright.description %>" ;
+    mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+    mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+    /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+    var bg = "<%= theme.bg%>".split(",");
+    var bgindex = Math.floor(Math.random()*bg.length);
+    if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+      alert('朋友，IE浏览器未适配哦~');
+    }
+  </script>
+</head> 

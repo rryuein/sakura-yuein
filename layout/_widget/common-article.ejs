@@ -1,0 +1,228 @@
+<%
+  var pAvatar = post.avatar || (theme.avatar);
+  var pAuthor = post.author || theme.name;
+  var pLink   = post.authorLink || theme.url;
+  // photos 在 front-matter 里既可能写成 "url"，也可能写成 ["url1","url2"]，统一取第一张。
+  var coverOf = function (p) {
+    if (!p || !p.photos) return '';
+    return Array.isArray(p.photos) ? (p.photos[0] || '') : String(p.photos);
+  };
+  var postCover = coverOf(post);                        // 本篇文章头图
+  var prevCover = post.prev ? coverOf(post.prev) : '';   // 上一篇缩略图
+  var nextCover = post.next ? coverOf(post.next) : '';   // 下一篇缩略图
+%>
+<!-- 文章未填写基本信息时调用配置文件默认值 -->
+<link rel="stylesheet" type="text/css" href="<%- theme.libs.css.sharejs %>">
+<div class="pattern-center-blank"></div>
+<div class="pattern-center single-center">
+  <% if (postCover){ %>
+  <!-- 有配图默认渲染第一张 -->
+  <div class="pattern-attachment-img lazyload" style="background-image: url(<%= postCover %>)"
+    src="<%- theme.lazyloadImg%>" data-src="<%= postCover %>">
+  </div>
+  <% } else {%>
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/page/lm.wepb)"
+      src="<%- theme.lazyloadImg%>" data-src="https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/page/lm.wepb">
+    </div>  
+  <% } %>
+  <header class="pattern-header single-header">
+    <h1 class="entry-title"><%- post.title %></h1>
+    <p class="entry-census">
+      <% if(pAvatar){ %>
+      <span class="post-meta-item">
+        <a href="<%- pLink %>">
+          <img src="<%- pAvatar %>">
+        </a>
+      </span>
+      <% } %>
+      <% if(pAuthor){ %>
+      <span class="post-meta-item">
+        <a href="<%- pLink %>"> <%- pAuthor %> </a>
+      </span>
+      <span class="bull">
+        ·</span>
+      <% } %>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="fa fa-calendar"></i>
+        </span>
+        <span class="post-meta-item-text"> <%= date(post.date, 'YYYY-M-D') %> </span>
+      </span>
+      <span class="bull">
+        ·</span>
+      <!-- 浏览数显示 -->
+      <span class="post-meta-item" <% if (post.encrypt == true) { %>style="display:none" <% } %>>
+        <span class="post-meta-item-icon">
+          <i class="iconfont icon-attention"></i>
+        </span>
+        <span class="post-meta-item-text">本文共<span id="busuanzi_value_page_pv"> </span>次阅读
+        </span>
+      </span>
+      <span class="bull">
+        ·</span>
+      <!-- 字数统计-->
+      <span class="post-meta-item" <% if (post.encrypt == true) { %>style="display:none" <% } %>>
+
+        <% if(theme.word_count && !post.no_word_count){%>
+        <%- partial('_partial/word') %>
+        <% } %>
+      </span>
+      <!-- 评论数显示 -->
+      <!--<span class="bull">
+        ·</span>
+       <span class="post-meta-item" <% if (post.encrypt == true) { %>style="display:none" <% } %>>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              </span class="post-meta-item-text">
+                <span class="valine-comment-count" data-xid="/<%- post.abbrlink%>"> </span>
+              </span>
+          </span> -->
+    </p>
+  </header>
+</div>
+
+<div class="allparts justify-content-center flex-row-reverse">
+  <%- partial('_partial/sidebar',{post: post}) %>
+  <div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1"
+        class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="entry-content">
+          <%- post.content %>
+        </div>
+
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">
+            <a href="https://yuein.net/donate" rel="next">
+              <img data-src="<%- theme.donatemin %>" class="lazyload" onerror="imgError(this,3)" style="box-shadow: 0px 0px 0px rgb(0 0 0 / 0%);"></img>
+            </a>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent">
+        </div>
+        <!-- 评分 -->
+        <div class="single-reward">
+          <%if (theme.widgetpack.enable) { %>
+          <%- partial('_partial/widgetpack') %>
+          <% } %>
+        </div>
+        <!-- 自定义署名方式 -->
+        <footer class="post-footer">
+          <div class="post-lincenses" style="color: #ff9966;">
+            欢迎转载，转载时请注明来源哦！
+            <br>
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow">
+            <i class="fa fa-creative-commons" aria-hidden="true"></i>知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+          </div>
+          <% if(post.tags && post.categories){ %>
+          <div class="post-tags" style="color: #a39391">
+            <span><i class="fa fa-tags"></i>
+              <% post.tags.each((tag)=>{ %>
+              <a href="<%- url_for(tag.path) %>" style="color: #716e77;"><%= tag.name %><em>·</em></a>
+              <% }) %>
+            </span>
+            <span>
+              <i class="iconfont icon-file"></i>
+              <% post.categories.each((category)=>{ %>
+              <a href="<%- url_for(category.path) %>" style="color: #716e77;"><%= category.name %></a>
+              <% }) %>
+            </span>
+          </div>
+          <% } %>
+          <div class="post-share" <% if (post.encrypt == true) { %>style="display:none" <% } %>>
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer>
+
+      </article>
+      <!-- #post-## -->
+      <section class="post-squares nextprev">
+        <% if (post.prev){ %>
+        <% if (post.next) { %>
+        <div class="post-nepre half previous">
+          <% } else { %>
+          <div class="post-nepre full previous">
+            <% } %>
+            <a href="<%- url_for(post.prev.path) %>" rel="prev">
+              <div class="background">
+                <% if (!prevCover) {%>
+                    <img class="lazyload" src="<%- theme.lazyloadImg %>" data-src="https://www.dmoe.cc/random.php"
+                    style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
+                    src="https://www.dmoe.cc/random.php">
+                <% } else {%>
+                  <img class="lazyload" src="<%- theme.lazyloadImg %>" data-src="<%- prevCover %>"
+                    style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
+                    src="<%- prevCover %>">
+                <% } %>
+              </div>
+              <span class="label">Previous Post</span>
+              <div class="info">
+                <h3><%= post.prev.title%></h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+          <% } %>
+          <% if (post.next){ %>
+          <% if (post.prev) { %>
+          <div class="post-nepre half next">
+            <% } else { %>
+            <div class="post-nepre full next">
+              <% } %>
+              <a href="<%- url_for(post.next.path) %>" rel="next">
+                <div class="background">
+                  <% if (!nextCover) {%>
+                      <img class="lazyload" src="<%- theme.lazyloadImg%>" data-src="https://www.dmoe.cc/random.php"
+                      style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                      onerror="imgError(this,3)" src="https://www.dmoe.cc/random.php">
+                  <% } else{%>  
+                    <img class="lazyload" src="<%- theme.lazyloadImg%>" data-src="<%- nextCover %>"
+                      style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                      onerror="imgError(this,3)" src="<%- nextCover %>">
+                  <% } %>
+                </div>
+                <span class="label">Next Post</span>
+                <div class="info">
+                  <h3><%= post.next.title%></h3>
+                  <hr>
+                </div>
+              </a>
+            </div>
+            <% } %>
+      </section>
+      <!-- 加密文章隐藏评论 -->
+      <section class="comment" <% if (post.encrypt == true) { %>style="display:none" <% } %>>
+      </section>
+      <!-- 加密文章隐藏作者信息 -->
+      <!--评论配置-->
+      <% if (theme.waline.enable){ %>
+      <%- partial('_partial/waline', {
+              key: post.key,
+              title: post.title,
+              url: config.url+url_for(post.path)
+            }) %>
+      <% } %>
+    </main>
+    <!-- #main -->
+  </div><!-- #primary -->
+  </div>
+</div>
+<% if (post.mathjax) { %>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+<% } %>
+<style>
+  .single-center .single-header h1.entry-title {
+    font-size: 40px;
+  }
+  .single-center .entry-census {
+    padding:18px 0px 0 16px;
+  }
+</style>

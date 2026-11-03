@@ -1,0 +1,61 @@
+<div class="typedjs">
+  <span id="description" ></span>
+  <span class="cursor1">|</span>
+</div>
+<script>
+    $('#description').empty();
+    $(document).ready(function(){
+      var typed = new Typed("#description", {
+        strings: ['<%= theme.description.sub1 %>',
+                    '<%= theme.description.sub2 %>',
+                    '<%= theme.description.sub3 %>',
+                    '<%= theme.description.sub4 %>^60000',
+                      '<%= theme.talk.sub1 %>',
+                      '<%= theme.talk.sub2 %>',
+                      '<%= theme.talk.sub3 %>',
+                      '<%= theme.talk.sub4 %>',
+                      '<%= theme.talk.sub5 %>',
+                      '<%= theme.talk.sub6 %>',
+                      '<%= theme.talk.sub7 %>',
+                      '<%= theme.talk.sub8 %>',
+                      '<%= theme.talk.sub9 %>'],
+        startDelay: <%= theme.description.startDelay %>,
+        typeSpeed: <%= theme.description.typeSpeed %>,
+        loop: <%= theme.description.loop %>,
+        backSpeed: <%= theme.description.backSpeed %>,
+        showCursor: false,
+        backDelay: <%= theme.description.backDelay %>,
+        autoInsertCss: false
+      });
+    })
+</script>
+<style>
+  .typedjs{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    top: 58%;
+    text-align: center;
+    z-index: 100;
+  }
+  .typedjs span{
+    color: #eaeadf;
+  }
+  .cursor1{
+    margin-left: -5px;
+    opacity: 1;
+    animation: typedjsBlink 1.2s infinite;
+    -webkit-animation: typedjsBlink 1.2s infinite;
+    animation: typedjsBlink 1.2s infinite;
+    animation-iteration-count: infinite !important;
+    color: #fff;
+  }
+  @keyframes typedjsBlink{
+    50% { opacity: 0.0; }
+  }
+  @-webkit-keyframes typedjsBlink{
+    0% { opacity: 1; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1; }
+  }
+</style>

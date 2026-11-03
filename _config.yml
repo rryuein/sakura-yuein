@@ -1,0 +1,432 @@
+#----------------------------网页信息----------------------------------
+# site name
+#prefixName: cungudafa
+siteName: 若儿的笔记
+# favicon and site master avatar
+name: 如若yuein
+favicon: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/custom/favicon.ico
+avatar: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/custom/yuein.webp
+url: https://rryuein.github.io/
+#公告
+announcement: 是个人小站喵，都是yuein的主观输出，不对内容的真实性负责，请谨慎阅读哦<br><br>站内大量使用外部素材，如有侵权请联系yuein删除<br><br><br>绝对不是笨蛋！
+#尝试 另一处在hexo-theme-sakuraplus\layout\_partial\headrtop.ejs
+# 打字效果副标题.
+# 如果有符号 ‘ ，请在 ’ 前面加上 \
+description:
+  enable: true
+  loop: false # 是否循环
+  showCursor: true # 是否显示光标
+  startDelay: 3000 # 开始延迟
+  typeSpeed: 120 # 打字速度
+  backSpeed: 50 # 删除速度
+  backDelay: 1500 #删除延迟
+  sub1: 你好，欢迎翻阅若儿的笔记，希望有可以帮到你的东西呀
+  sub2: 当然也可以先看看小站的阅览指南，就在下面不远处
+  sub3: 如果有什么问题的话也要记得留言哦
+  sub4: 祝你开心!
+# 可以精简，但没有必要，诶嘿
+talk:
+  sub1: 咦，怎么还不走呀，是想和若儿再聊会天嘛
+  sub2: 呜~若儿好感动，很少有人会这样做呢
+  sub3: 那么，“如你所见”若儿是可爱的女孩子哦
+  sub4: 虽然这还只是停留在心中的小小愿望
+  sub5: 虽然有各种阻碍难以跨越
+  sub6: 但只要依旧存在光亮，若儿也会一直努力的
+  sub7: 想必来到这里的你也会有属于自己的愿望吧
+  sub8: 尽管若儿也不能做到些什么，但
+  sub9: 愿所有美好的心愿都能得到祝福
+descrip: 你好呀 #下方的
+
+# 左侧网站名称
+logo:
+  sakuraso: 若儿
+  no: の
+  shironeko: 笔记
+
+siteBuildingTime: 2022-04-11 17:20:00 # your site build time or founded date(2020-05-20 17:20:00)
+
+#ICP备案信息尾部显示
+icp:
+  enable: false #选择性设置
+  url: / # 备案链接
+  text:  # 备案信息
+
+cdn: https://cdn.jsdelivr.net/gh/rryuein/pagecdn
+pjax: 1 # 无刷新类似ajax,加速
+mathjax: 1 # 1开启,公式解析
+useless: https://
+#-----------------------------导航栏--------------------------------
+# 菜单导航栏
+menus:
+  首页: { path: /, fa: fa-fort-awesome faa-shake }
+  归档: { path: /archives/, fa: fa-archive faa-shake, submenus: { 
+    统计: {path: /analytics/ , fa: fa-line-chart },
+    标签: {path: /tags/, fa: fa-tags }, 
+    学习ing: {path: /categories/学习ing/, fa: fa-pencil }, 
+    好吃的: {path: /categories/好吃的/, fa: fa-cutlery }, 
+    #资源: {path: /categories/资源/, fa: fa-cloud-download }, 
+    随想: {path: /categories/随想/, fa: fa-commenting-o },
+    糖糖: {path: /categories/糖糖/, fa: fa-birthday-cake},
+    #转载: {path: /categories/转载/, fa: fa-book }
+
+  } }
+  清单: { path: javascript:;, fa: fa-list-ul faa-vertical, submenus: { 
+    想说的: {path: /artitalk/, fa: fa-commenting-o fa-commenting }, 
+    好看的: {path: /photos/, fa: fa-photo },
+    读好书: {path: /books/, fa: fa-book },
+    #追剧: {path: /movies/, fa: fa-film faa-vertical }
+  } }
+  留言板: { path: /comment/, fa: fa-pencil-square-o faa-tada }
+  友人帐: { path: /links/, fa: fa-link faa-shake }
+  赞赏: { path: /donate/, fa: fa-heart faa-pulse }
+  关于: { path: javascript:;, fa: fa-leaf faa-wrench , submenus: { 
+    若儿: {path: /about/, fa: fa-meetup}, 
+    主题: {path: /theme-sakura/, fa: iconfont icon-sakura },
+    # Lab: {path: /lab/, fa: fa-cogs },
+    # valine: {path: /valine/, fa: fa-cogs }
+  } }
+  #项目: { path: /client/, fa: fa-android faa-vertical }
+  #RSS: { path: /atom.xml, fa: fa-rss faa-pulse }
+
+#social  url, img PC端配置
+social:
+  github: {url: http://github.com/rryuein, img: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/social/github.png}
+  bilibili: {url: https://space.bilibili.com/442451967, img: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/social/bilibili.png}
+  qq: {url: /#, qrcode: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/custom/qq.png, img: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/social/qq.png}
+  twitter: {url: https://twitter.com/Mangu_yuein, img: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/social/twitter.png}
+  steam: {url: https://steamcommunity.com/id/22136832, img:	https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/social/steam.png}
+  #gitee: {url: https://gitee.com/cungudafa, img: /img/social/gitee.png}
+  #csdn: {url: https://blog.csdn.net/cungudafa, img: /img/social/csdn.png}
+  #zhihu: {url: https://www.zhihu.com/people/cungudafa, img: /img/social/zhihu.png}
+  #jianshu: {url: /https://www.jianshu.com/u/9b726a534140, img: /img/social/jianshu.png}
+  # sina: {url: http://weibo.com/3829198906/info, img: /img/social/sina.png}
+  #wangyiyun: {url: https://music.163.com/#/user/home?id=337394988, img: /img/social/wangyiyun.png}
+
+#social  url, img 移动端配置
+msocial:
+  github: {url: http://github.com/rryuein, fa: fa-github, color: 333}
+  weibo: {url: http://weibo.com/3829198906/info, fa: fa-weibo, color: dd4b39}
+  qq: {url: https://wpa.qq.com/msgrd?v=3&uin=3297452726&site=qq&menu=yes, fa: fa-qq, color: 25c6fe}
+  #csdn: {url: https://blog.csdn.net/cungudafa, fa: fa-star, color: ff9900}
+
+#--------------------------------首页----------------------------------------
+# 首页轮播图蒙版
+bgclass: filter-dot # 背景图片样式 空 原图效果 filter-dim 阴影 filter-grid 横条 filter-dot 点点
+# 轮播图、如果文章没有设置photos会在这里随机取图
+bg: 
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/1.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/2.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/3.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/4.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/5.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/6.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/7.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/8.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/9.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/10.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/11.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/12.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/13.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/14.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/15.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/16.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/17.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/18.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/19.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/20.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/21.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/22.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/23.webp
+  - https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/cover/24.webp
+
+
+# 原回到顶部，直达评论，切换昼夜等功能，现已修改在右下角
+left_side_bar:
+  enable: true
+
+bg_music: /
+
+# 首页提示语
+notice: 呜呜呜，代码好难喔
+# 缓加载动画
+lazyloadImg: https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg
+
+# startdash url, title, desc img
+startdash: 
+  - {url: https://gitee.com/cungudafa/hexo-theme-sakuraplus, title: SakuraPlus, desc: 感谢大佬写的主题, img: /img/startdash/sakura.md.png}
+  - {url: /, title: 诶嘿, desc: 还没想好放什么嘛, img: /img/startdash/1.webp}
+  - {url: /guide, title: 阅览指南, desc: 是小站的说明哦, img: /img/startdash/huigaide.webp}
+
+# 首页文章排序规则
+# Home page sort type: -1: newer first，1: older first.首页文章排序规则
+homePageSortType: -1
+# Home page article shown number)首页最多显示文章数
+homeArticleShown: 10
+
+
+# 首页卡片显示文章描述
+post_description:
+  enable: true # 自动获取文章前50字
+
+
+#--------------------------------功能页面-------------------------------------------
+donate:
+  title: 其实就是和若儿交个朋友哦~
+  message: 反正赚钱也挺不容易的，就不用给若儿了吧
+  # paypal: #https://www.paypal.me/hojuncn
+  # alipay: /img/custom/donate/AliPay.jpg #大图
+  # alipayQR: /img/custom/donate/AliPayQR.jpg
+  # wechat: /img/custom/donate/WeChatPay.png #大图
+  # wechatQR: /img/custom/donate/WeChanQR.jpg
+  # wechatSQ: /img/custom/donate/WeChanSQ.jpg
+  bilibili: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/custom/donate/bilibili.png
+  qq: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/custom/donate/qq.png
+donatemin: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/other/jieyong.webp
+
+# 视频地址为，配置如下
+movies:
+  enable: false
+  url: none
+  # 多个视频用逗号隔开，随机获取。支持的格式目前已知MP4,Flv。其他的可以试下，不保证有用
+  name: none
+
+aplayer:  ##媒体播放引擎，移动端会禁止自动播放
+  enable: true
+  # 歌单接口：MetingJS 默认的 https://api.i-meto.com/meting/api 可能不可用
+  # 把下面这行换成可用的镜像地址即可，占位符 :server/:type/:id/:r 保持不变。
+  api: "https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&r=:r"
+  id: 7466799465 #歌单id
+  server: netease #网易云，可换QQ音乐
+  type: playlist
+  fixed: true ##开启吸底模式，固定到底部
+  autoplay: false ##音频自动播放
+  loop: all  ##音频循环播放, 可选值: 'all', 'one', 'none'
+  order: random ##音频循环顺序, 可选值: 'list', 'random'
+  preload: auto ##预加载，可选值: 'none', 'metadata', 'auto'
+  volume: 0.5 ##默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
+  mutex: true ##互斥，阻止多个播放器同时播放
+
+# Valine ##极简留言功能
+# leancloud即将停止服务，目前似乎只能使用waline
+valine:
+  enable: false ##打开valine评论功能true
+  appId: 1H1RwWxmYkW1Fvw7zjuVG82z-MdYXbMMI
+  appKey: TmHhsnH8nkud95mapACnGeNO
+  notify: false #true自带评论mail回复提醒，第三方邮件提醒就设置为false
+  verify: true #验证码
+  visitor: false #统计阅读量
+  comment_count: true #统计评论数
+  avatar: monsterid # Gravatar style : mp/identicon/monsterid/wavatar/retro/hide
+  guest_info: nick #,mail,link # custom comment header
+  pageSize: 10
+  placeholder: 有没有想对若儿说的呢~ # Comment Box placeholder
+  requiredFields: ['nick','mail'] #设置必填项
+  background:  #输入框提示动画，得在valine<style>里改
+  serverurl: https://leancloud.yuein.net #国际版的公共域名已经停用，需要绑定自己的api
+
+# 换成了waline，设置请参考官网https://waline.js.org/
+waline:
+  enable: true
+  notify: false #true自带评论mail回复提醒，第三方邮件提醒就设置为false
+  verify: true #验证码
+  visitor: false #统计阅读量
+  comment_count: true #统计评论数
+  avatar: monsterid # Gravatar style : mp/identicon/monsterid/wavatar/retro/hide
+  guest_info: nick #,mail,link # custom comment header
+  pageSize: 10
+  requiredMeta:  #设置必填项,请在waline.ejs中修改，参数['nick,'mail','link']
+  serverurl: https://comment-k83k.vercel.app #vercel的项目地址
+  placeholder: '有没有想对若儿说的呢~'
+
+  
+
+
+# 动态说说页面
+# leancloud即将关闭服务，替换vercel，与waline类似
+# more info please open https://artitalk.js.org
+artitalk:
+  serverurl: https://artitalkserver-rryueins-projects.vercel.app/ #vercel里面设置
+  pageSize: 5 #每页显示说说的数量
+  placeholder1: 写点啥呢 # 输入框提示语
+  placeholder2: 要更新头像吗？ # 头像提示语
+  lang: zh #语言English(en)及西班牙语Español(es)
+  motion: 1 # 加载动画1:加载,0取消加载
+  bgimg: https://cdn.jsdelivr.net/gh/weilining/img@main/img/valinebg.webp # 输入框小动画
+  # 极简黑白主题minimalist、渐变主题gradient、壁纸wallpaper 
+  # 参考 https://blog.csdn.net/cungudafa/article/details/106224223
+  style: 
+    enable: true #个性定制
+    wallpaper: https://ae01.alicdn.com/kf/H21b5f6b8496141a1979a33666e1074d9x.jpg #https://bing.rthe.net/wallpaper  # 壁纸
+    color: white   #字体颜色
+    linear_gradient: rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35) 95% # 渐变规律颜色+百分比 rgb(109, 208, 242) 15%, rgb(245, 154, 190) 85%
+    border_right_color: '#FFC0BE' #三角颜色
+    animation: false #true打开动画渐变渲染(壁纸和动画渐变渲染建议只开一个)
+
+
+
+# 友链页信息,tips支持html语言
+mylinkinfo:
+  enable: true
+  tips: '<p>　</p> <p><strong>Tips:</strong>网站不要求https强制加锁，但头像图片尽量用安全链接哦！</p> <p style="font-size: 13px;color: #ff9999;"> 　1. 喜欢若儿的话就添加友链吧 <br>　2. 可以的话请先添加小站链接哦<br>　3. 广告站就不要添加了<br>　4. 对于死链，若儿会定期移除的。</p>'
+  name: 如若yuein
+  desc: 渴望拥有自己的生活
+  url: https://yuein.net
+  img: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/img/custom/yuein.png
+
+# botui https://www.bootcdn.cn/botui/
+# 简介在about页面需要单独配置（/js/third-party/botui.js）
+
+# books、movies页面使用的是豆瓣插件，在主题目录配置
+
+# Whether to display post-calender in the `archive` page
+# 设置在归档页面achive中是否显示'文章日历'控件
+postCalendar: true 
+
+# 仿volantis主题小标签美化 
+# 更多详细使用参考 https://volantis.js.org/v2/tag-plugins/
+# v_tags:
+#   enable: true
+
+#--------------------------------其他功能--------------------------------------------
+
+# 简易信息聚合,站点共享
+rss: /atom.xml
+
+# Whether to activate the copyright information of the blog and author when copying the post content.
+# minCharNumber: Approve copyright information by copying at least how many characters.
+# 是否激活复制文章时追加博客和作者的版权信息.
+copyright:
+  enable: true # 代码块是否可复制,true允许,false加上文章信息
+  minCharNumber: 400 # 至少复制多少个字符就追加版权信息.
+  description: 本文章著作权归作者所有，任何形式的转载都请注明出处。
+
+
+# 查看大图
+fancybox:
+  enable: true
+
+# 外链转知乎卡片形式 
+linkcard:
+  enable: false #所以这是干啥的
+
+# 需要下载hexo-worldcount
+#是否开启字数统计 (可以在post设置no_word_count: true)
+#不需要使用，直接设置值为false，或注释掉
+word_count: true
+
+# busuanzi(http://busuanzi.ibruce.info/) website statistics
+# 不蒜子(http://busuanzi.ibruce.info/) 网站统计
+busuanziStatistics:
+  enable: true
+  totalTraffic: true # 总访问量
+  totalNumberOfvisitors: true # 总人次
+
+# Add google analytics configuration
+# 添加 Google Analytics 配置
+googleAnalytics:
+  enable: false
+  id:
+
+# Add baidu analytics configuration
+# 添加 baidu Analytics 配置 https://tongji.baidu.com/
+baiduAnalytics:
+  enable: false # 百度分析
+  id: 
+
+# 自动生成sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+  
+# widgetpack 星星评分
+# To get your ID visit https://widgetpack.com
+# 没用过哎，好像也不可用了
+widgetpack:
+  enable: false #false
+  id:  #<app_id>
+  color: fc6423
+
+# Online contact ##在线聊天 https://www.daovoice.io/
+daovoice: 
+  enable: false
+  app_id: f6b2a0b1 ##这里替换成你DaoVoice上的appid
+
+# 天气显示 http://weatherdt.com/
+weather:
+  enable: false
+  app_id:  #这里是你的appid
+
+# 建议一项只开一个
+js:
+  hititle: true #浏览器标题
+  KeyBlock: false #按键屏蔽,不能F12调试和查看源代码
+  bg:
+    sakura_petals: true  #仅在首页花瓣飘落（大内存）
+    snow_petals: false # 雪花飘落（大内存）
+    piao: true #飘动彩带
+    live2d_widget: false #看板娘 需jq（大内存）
+    bgchange: false # 是否开启壁纸切换
+  clink:
+    word: false #点击出现字效
+    love: false #点击出现爱心
+    cursor: true # 星星跟随坠落(大内存)
+hititle:
+  outpage: 若儿在这里哦~
+  backpage: ヾ(Ő∀Ő3)ノ哎嘿！
+
+#------------------------------CDN，请确保地址正确-----------------------------
+
+libs:
+  css:
+    googlefonts: https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC
+    style: /css/style.css #https://cdn.jsdelivr.net/gh/rryuein/pagecdn/css/style.css #  /css/style.css #
+    lib: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/css/lib.min.css
+    font: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/css/font.css
+    insight: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/css/insight.css
+    tags: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/css/tags.css
+    fancybox: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/css/jquery.fancybox.min.css
+    sharejs: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/css/sharejs.css
+    #tocbot: https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css
+    live2d_widget: https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css
+    logo:
+      enable: true # 自定义logo
+      logo: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/css/logo.css
+      logo_fonts: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/fonts/LOGO/logo.css
+    waline: /css/waline.css #https://cdn.jsdelivr.net/gh/rryuein/pagecdn/css/waline.css
+    typeface: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/fonts/kitty/kitty.css
+    #cute_font: /fonts/cute/cute.css
+    sidebar: /css/sidebar.css #https://cdn.jsdelivr.net/gh/rryuein/pagecdn/css/sidebar.css
+    donate: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/css/donate.css
+
+  js:
+    jquery: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/jquery.js 
+    linkcard: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/linkcard.js
+    lib: /js/lib.min.js #https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/lib.min.js
+    clipboard: https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js
+    InsightSearch: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/InsightSearch.js
+    sakura_app: /js/sakura-app.js #https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/sakura-app.js 
+    busuanzi: https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
+    fancybox: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/jquery.fancybox.min.js 
+    echarts: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/echarts.min.js
+    valine:  https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/Valine144.min.js #/js/Valine.min.js #
+    hititle: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/hititle.js 
+    KeyBlock: https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/js/noSomeKey.js #按键屏蔽,不能F12调试和查看源代码
+    sakura_petals: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/sakura-small.js  #small樱花飘落
+    snow_petals: https://cdn.jsdelivr.net/gh/Yafine/cdn@2.5/source/js/snow1.js
+    piao: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/piao.js                    #飘动彩带
+    live2d_widget: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/live2d-widget/autoload.js
+    word: https://cdn.jsdelivr.net/gh/wallleap/cdn/js/shehuizhuyi.js              #点击出现字效
+    love: https://cdn.jsdelivr.net/gh/wallleap/cdn/js/love.js                   #点击出现爱心
+    cursor: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/cursor.js           # 星星跟随坠落(大内存)
+    fancybox1: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/fancybox.js 
+    typed: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/typed.js #/js/typed.js #首页打字机
+    #pjax: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/pjax.js  lib.min.js中已包含pjax，怎么不早说
+    jqcloud: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/jqcloud.js
+    waline: /js/waline.js #https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/waline.js
+    artitalk: /js/artitalk.js #https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/artitalk.min.js    #hclonely做的
+    toc: /js/toc.js #https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/toc.js
+    headroom: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/headroom.js
+    jqheadroom: https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/jq-headroom.js
+    player: /js/player.js #https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/player.js
+    reload: /js/pjax-reload.js #https://cdn.jsdelivr.net/gh/rryuein/pagecdn/js/pjax-reload.js #前进/后退（popstate）重载补齐

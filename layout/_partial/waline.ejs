@@ -1,0 +1,46 @@
+<% if (theme.waline.enable && post.comments) { %>            
+    <div id="waline"></div>
+    <script>
+        /* waline 按需加载：首次出现评论区才拉 waline.js（见 head.ejs 的 LazyLib） */
+        LazyLib.load('waline').then(function () {
+        if (!document.getElementById('waline')) return        // 加载期间已经翻页走了
+        Waline.init({
+            el: '#waline',
+            path: window.location.pathname,
+            enableQQ: true,
+            boolean: true,
+            visitor: '<%- theme.waline.visitor %>' === 'true',
+            avatar: '<%- theme.waline.avatar %>',
+            pageSize: '<%- theme.waline.pageSize %>',
+            lang: 'zh-CN',
+            requiredMeta: [],
+            serverURL: '<%= theme.waline.serverurl %>',
+            emoji:['//cdn.jsdelivr.net/gh/rryuein/pagecdn/emoji/tv',
+                    '//unpkg.com/@waline/emojis@1.1.0/qq',
+                    '//cdn.jsdelivr.net/gh/rryuein/pagecdn/emoji/泠鸢yousa',
+                    '//cdn.jsdelivr.net/gh/rryuein/pagecdn/emoji/蛆音娘',
+                    '//cdn.jsdelivr.net/gh/rryuein/pagecdn/emoji/鹿乃',
+                    '//cdn.jsdelivr.net/gh/rryuein/pagecdn/emoji/洛天依',
+                    '//cdn.jsdelivr.net/gh/rryuein/pagecdn/emoji/缘结神',
+                    '//cdn.jsdelivr.net/gh/rryuein/pagecdn/emoji/2233',
+                ],
+            locale: {
+                placeholder: '<%= theme.waline.placeholder %>',
+                nick: '昵称：',
+                mail: '邮箱：',
+                link: '网址（可选）：',
+                admin:'若儿',
+                level0: 'lv2',
+                level1: 'lv3',
+                level2: 'lv4',
+                level3: 'lv5',
+                level4: 'lv6',
+                level5: 'lv6+',
+            }
+
+        });
+        document.getElementById('wl-nick').placeholder='有名字才好交朋友喵~'
+        document.getElementById('wl-mail').placeholder='不填的话会没有头像哦~'
+        }).catch(function (e) { console.error('[waline]', e) })
+    </script>
+<% } %>

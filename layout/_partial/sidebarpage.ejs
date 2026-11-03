@@ -1,0 +1,66 @@
+<div id="sidebar" class="side">
+    <div class="sidebar-box">
+        <!--添加作者信息-->
+        <section class="author-profile" >
+            <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+              <a href="<%- theme.url %>" class="profile gravatar"><img src="<%- theme.avatar %>" itemprop="image"
+                  alt="<%- theme.name %>" height="90" width="90"></a>
+              <div class="meta">
+                <span class="title">Author</span>
+                <h3 itemprop="name">
+                  <a href="<%- theme.url %>" itemprop="url" rel="author"><%- theme.name %></a>
+                </h3>
+              </div>
+            </div>
+            <hr>
+            <p><i class="iconfont icon-write"></i>
+                <%if(page.title == "donate"){%>
+                    <id="hitokoto" style="text-align:center"><b id="hitokoto_text"> 若儿在努力摘抄...</b>
+                    <script>
+                        setTimeout(() => {
+                        fetch('https://v1.hitokoto.cn/?c=i&encode=json')
+                          .then(response => response.json())
+                          .then(data => {
+                          const hitokoto =  document.getElementById('hitokoto_text')
+                          hitokoto.innerText = data.hitokoto 
+                          })
+                          .catch(console.error)
+                        }, 5000);
+                    </script>                    
+                <%}else{%>
+                    <% if (!!(page.descrip)) { %>
+                        <%- page.descrip %>
+                    <% } else { %>
+                        <%- theme.descrip %>
+                    <% } %>
+
+                <%}%>
+            </p>
+        </section>
+        <div id="he-plugin-simple"></div>
+        <!--粘性侧边栏-->
+        <div class="sidesticky">
+            <div class="ann">
+                <div class="card-widget card-announcement">
+                    <div class="item-headline">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <span>公告</span>
+                    </div>
+                    <div class="announcement_content"><p class="announcement"><%- theme.announcement %></p>
+                    </div>
+                </div>
+            </div>
+            <%if(page.title!="donate"&&page.title!="tags"){%>
+                <div class="sideimg">
+                    <div id="topbar"></div>                
+                    <div id="hamster"></div>
+                    <div id="bottombar">
+                        <button id="music" onclick="addmusic()">音乐</button>
+                        <button id="mouse" onclick="addmouse()">小仓鼠</button>
+                    </div>                        
+                    <div class="musicbar"></div>
+                </div>
+            <%}%>
+        </div>
+    </div>
+</div>

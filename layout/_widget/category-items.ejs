@@ -1,0 +1,71 @@
+<% /* photos 可能是 "url" 或 ["url1","url2"]，统一取第一张（字符串别用 [0] 切） */ var cover = post.photos ? (Array.isArray(post.photos) ? (post.photos[0] || '') : String(post.photos)) : ''; %>
+<article class="post post-list" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="post-entry">
+    <div class="feature">
+      <a href="<%- url_for(post.path) %>">
+        <div class="overlay">
+          <i class="iconfont icon-text">
+          </i>
+          <% if(cover){ %>
+            <img class="lazyload" onerror="imgError(this,3)" src="<%- theme.lazyloadImg%>" data-src="<%= cover %>">
+          <% }else{ %>
+            <img class="lazyload" onerror="imgError(this,3)" src="<%- theme.lazyloadImg%>" data-src="<%= theme.bg[Math.floor(Math.random() * theme.bg.length + 1)-1] || 'https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png' %>">
+          <% } %>
+        </div>
+      </a>
+    </div>
+
+    <div class="p-time">
+      <i class="iconfont icon-time">
+      </i>
+      <%= date(post.date, 'YYYY-M-D') %>
+    </div>
+
+    <div class="post-meta">
+      <span>
+        <% if (post.top){ %>
+          <i class="fa fa-thumb-tack"></i>
+          <font color=ff9999>置顶</font>
+          <span class="post-meta-divider"> · </span>
+        <% } %>
+      </span>
+      <span><i class="fa fa-tags"></i>
+      <% post.tags.each((tag)=>{ %>
+          <a href="<%- url_for(tag.path) %>"><%= tag.name %></a>
+        <% }) %>
+      </span>
+      <p>
+      </p>
+      <span>
+        <i class="iconfont icon-file"></i>
+        <% post.categories.each((category)=>{ %>
+          <a href="<%- url_for(category.path) %>"><%= category.name %></a>
+        <% }) %>
+      </span>
+    </div>
+    
+    <h1 class="entry-title">
+      <a href="<%- url_for(post.path) %>">
+        <%= post.title %></a>
+    </h1>
+    <p>
+      <% if (post.description && post.description.length > 0) { %>
+        <%- post.description %>
+      <% } else { %>
+      <% if (theme.post_description.enable) { %>
+        <%- strip_html(post.content).substring(0, 40) %>
+      <% } %>
+      <% } %>
+    </p>
+    <footer class="entry-footer">
+      <div class="post-more">
+        <a href="<%- url_for(post.path) %>">
+          <i class="iconfont icon-caidan">
+          </i>
+        </a>
+      </div>
+    </footer>
+
+  </div>
+  <hr>
+</article>    

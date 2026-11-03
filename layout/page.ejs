@@ -1,0 +1,5 @@
+<% if (page.judgement) { %>
+    <%- partial('_partial/_post', {post: page, index: false}) %>
+<% } else { %>
+    <%- partial('_partial/_page', {post: page, index: false}) %>
+<% } %>

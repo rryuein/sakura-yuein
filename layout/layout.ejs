@@ -1,0 +1,100 @@
+<%- partial('_partial/head') %>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+
+  
+  <!-- Dynamic sliders -->
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <!-- Main content -->
+  <section id="main-container">
+    <!-- 首页显示 -->
+    <%- partial('_partial/headertop', null, {cache: !config.relative_link}) %>
+
+    <div id="page" class="site wrapper">
+      
+      <!-- banner -->
+      <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
+      
+      <!-- body -->
+      <%- body %>
+      <!-- body.end -->
+    </div>
+    <!-- search -->    
+    <%- partial('_widget/search/insight') %>
+    <!-- Side menu -->
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <!-- Floating window -->
+  <%- partial('_partial/mheader', null, {cache: !config.relative_link}) %>
+  <%- partial('_partial/bgchange', null, {cache: !config.relative_link}) %>
+  <%- partial('_partial/left', null, {cache: !config.relative_link}) %>
+
+  <% if (theme.aplayer.enable) { %>
+    <!-- 常驻容器：播放器一辈子住在这里，pjax 不会碰它 -->
+    <div id="aplayer-host"></div>
+    <!-- 惰性模板：内容不在文档树里，custom element 不会被连接 -->
+    <template id="aplayer-tpl">
+      <meting-js
+        <% for (i in theme.aplayer) { %>
+          <%- i %>="<%- theme.aplayer[i] %>"<% } %>
+      ></meting-js>
+    </template>
+  <% } %>
+
+  <!-- js -->
+  <% if (theme.js.bg.sakura_petals){ %>
+    <script src="<%- theme.libs.js.sakura_petals %>"> style="z-index: 1;" </script>
+  <% } %>
+  <% if (theme.js.bg.snow_petals){ %>
+    <script src="<%- theme.libs.js.snow_petals %>"></script>
+  <% } %>
+  <% if (theme.js.bg.live2d_widget){ %>
+  <script src="<%- theme.libs.js.live2d_widget %>"></script>
+  <link rel="stylesheet" href="<%- theme.libs.css.live2d_widget %>"/>
+  <% } %>
+  <% if (theme.js.hititle){ %>
+    <script>
+      window.outpage = "<%= theme.hititle.outpage %>"
+      window.backpage = "<%= theme.hititle.backpage %>"
+    </script>
+    <script src="<%- theme.libs.js.hititle %>"></script>
+  <% } %>
+  <% if (theme.js.clink.word){ %>
+    <script src="<%- theme.libs.js.word %>"></script>
+  <% } %>
+  <% if (theme.js.clink.cursor){ %>
+    <script src="<%- theme.libs.js.cursor %>"></script>
+  <% } %>
+  <% if (theme.js.clink.love){ %>
+    <script src="<%- theme.libs.js.love %>"></script>
+  <% } %>
+  <% if (theme.js.KeyBlock){ %>
+    <script src="<%- theme.libs.js.KeyBlock %>"></script>
+  <% } %>
+  <% if (theme.js.bg.bgchange ){ %>
+    <script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+  <% } %>
+  <% if (theme.js.bg.piao){ %>
+    <script src="<%- theme.libs.js.piao %>" type="text/javascript"></script>
+  <% } %>
+
+  <!-- footer-->  
+  <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+  
+</body>
+<style>
+  .aplayer.aplayer-fixed .lrc-show{
+    background: rgb(255 255 255 / 0%);
+  }
+</style>
+  <script>
+    console.log("为什么老是会报错呢，哭哭")
+</script>

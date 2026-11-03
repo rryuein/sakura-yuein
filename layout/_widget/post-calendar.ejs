@@ -1,0 +1,139 @@
+<div class="container archive-calendar">
+    <div class="card">
+        <div id="post-calendar" class="card-content"></div>
+    </div>
+</div>
+<style type="text/css">
+    #post-calendar {
+        width: 100%;
+        height: 225px;
+        padding-top: 20px;
+        border-radius: 12px;
+        background-color: rgba(255, 255, 255, 0.65);
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 800px;
+    }
+</style>
+
+<script type="text/javascript">
+    /* echarts 按需加载：首次进入归档页才拉库，加载完再画日历（见 head.ejs 的 LazyLib） */
+    (function () {
+    function renderCalendar () {
+    if (!document.getElementById('post-calendar')) return   // 加载期间已经翻页走了
+    /* 前进/后退命中 pjax 缓存时 #page 是克隆出来的：canvas 像素不会被复制，
+       但 _echarts_instance_ 属性会，echarts.init 会误取到旧实例 → 画出空白。
+       这里先丢掉旧实例再 init（正常首次渲染时它是空的，什么也不做）。 */
+    function freshChart (id) {
+        var el = document.getElementById(id)
+        if (!el) return null
+        var old = echarts.getInstanceByDom && echarts.getInstanceByDom(el)
+        if (old) { try { echarts.dispose(old) } catch (e) {} }
+        return echarts.init(el)
+    }
+    myChart = freshChart('post-calendar');
+
+    <%
+    // calculate range.
+    var startDate = moment().subtract(1, 'years');
+    var endDate = moment();
+    var rangeArr = '["' + startDate.format('YYYY-MM-DD') + '", "' + endDate.format('YYYY-MM-DD') + '"]';
+
+    // post and count map.
+    var dateMap = new Map();
+    site.posts.forEach(function (post) {
+        var date = post.date.format('YYYY-MM-DD');
+        var count = dateMap.get(date);
+        dateMap.set(date, count == null || count == undefined ? 1 : count + 1);
+    });
+
+    // loop the data for the current year, generating the number of post per day
+    var i = 0;
+    var datePosts = '[';
+    var dayTime = 3600 * 24 * 1000;
+    for (var time = startDate; time <= endDate; time += dayTime) {
+        var date = moment(time).format('YYYY-MM-DD');
+        datePosts = (i === 0 ? datePosts + '["' : datePosts + ', ["') + date + '", ' +
+            (dateMap.has(date) ? dateMap.get(date) : 0) + ']';
+        i++;
+    }
+    datePosts += ']'; %>
+
+    option = {
+        title: {
+            top: 0,
+            text: '文章日历',
+            left: 'center',
+            textStyle: {
+                color: '#3C4858'
+            }
+        },
+        tooltip: {
+            padding: 10,
+            backgroundColor: '#555',
+            borderColor: '#777',
+            borderWidth: 1,
+            formatter: function (obj) {
+                var value = obj.value;
+                return '<div style="font-size: 14px;">' + value[0] + '：' + value[1] + '</div>';
+            }
+        },
+        visualMap: {
+            show: true,
+            showLabel: true,
+            categories: [0, 1, 2, 3, 4],
+            calculable: true,
+            inRange: {
+                symbol: 'rect',
+                color: ['#ebedf0', '#c6e48b', '#7bc96f', '#239a3b', '#196127']
+            },
+            itemWidth: 12,
+            itemHeight: 12,
+            orient: 'horizontal',
+            left: 'center',
+            bottom: 0
+        },
+        calendar: [{
+            left: 'center',
+            range: <%- rangeArr %>,
+            cellSize: [13, 13],
+            splitLine: {
+                show: false
+            },
+            itemStyle: {
+                width: '1.88679%',
+                height: '15px',
+                color: '#EEEEEE',
+                borderColor: '#FFF',
+                borderWidth: 2
+            },
+            yearLabel: {
+                show: false
+            },
+            monthLabel: {
+                nameMap: 'cn',
+                fontWeight: 'lighter',
+                fontSize: 12
+            },
+            dayLabel: {
+                show: true,
+                formatter: '{start}  1st',
+                fontWeight: 'lighter',
+                nameMap: ['日',' ','二',' ','四',' ','六',],
+                fontSize: 12
+            }
+        }],
+        series: [{
+            type: 'heatmap',
+            coordinateSystem: 'calendar',
+            calendarIndex: 0,
+            data: <%- datePosts %>
+        }]
+
+    };
+
+    myChart.setOption(option);
+    }
+    LazyLib.load('echarts').then(renderCalendar).catch(function (e) { console.error('[post-calendar]', e) })
+    })()
+</script>

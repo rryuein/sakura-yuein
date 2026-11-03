@@ -1,0 +1,49 @@
+<div class="pattern-center ">
+    <div class="pattern-attachment-img">
+      <% if (page.photos) { %>
+      <img src="<%= page.photos %>" src="<%- theme.lazyloadImg %>" data-src="<%= page.photos %>" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+      <% } else { %>
+        <img src="<%= theme.bg[Math.floor(Math.random() * theme.bg.length + 1)-1] %>" src="<%- theme.lazyloadImg %>" data-src="<%= page.photos %>" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+      <% } %>
+    </div>    
+    <header class="pattern-header ">
+      <h1 class="entry-title">
+        标签云</h1>
+        <span class="post-meta-item-icon">
+          <i class="iconfont icon-attention"></i>
+        </span>
+        <span class="post-meta-item-text">本页共<span id="busuanzi_value_page_pv"> </span>次阅读
+        </span>
+    </header>
+    <%- partial('_partial/waves') %>
+</div>
+<style type="text/css">
+    #tag-wordcloud {
+        width: 100%;
+        height: 300px;
+    }
+</style>
+<div class="allparts justify-content-center flex-row-reverse">
+      <%- partial('_partial/sidebarpage') %>
+        <div id="content" class="site-content">
+        <div class="container" data-aos="fade-up">
+            <div class="card">
+                <div id="tag-wordcloud" class="card-content"></div>
+            </div>
+        </div>
+        <footer class="post-footer">
+            <div class="post-lincenses" style="color: #ff9966;">
+                欢迎转载，转载时请注明来源哦！
+                <br>
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow">
+                <i class="fa fa-creative-commons" aria-hidden="true"></i>知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+            </div>
+            <div class="post-tags">
+            </div>
+            <div class="post-share">
+                <div class="social-share sharehidden share-component"></div>
+                <i class="iconfont show-share icon-forward"></i>
+            </div>
+        </footer>
+    </div>
+</div>

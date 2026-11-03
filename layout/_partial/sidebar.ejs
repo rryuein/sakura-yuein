@@ -1,0 +1,50 @@
+<div id="sidebar" class="side">
+    <div class="sidebar-box">
+        <!--添加作者信息-->
+        <section class="author-profile" >
+            <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+              <a href="<%- theme.url %>" class="profile gravatar"><img src="<%-theme.avatar %>" itemprop="image"
+                  alt="<%- theme.name %>" height="90" width="90"></a>
+              <div class="meta">
+                <span class="title">Author</span>
+                <h3 itemprop="name">
+                  <a href="<%- theme.url %>" itemprop="url" rel="author"><%- theme.name %></a>
+                </h3>
+              </div>
+            </div>
+            <hr>
+            <p><i class="iconfont icon-write"></i>
+                <% if (!!(post.descrip)) { %>
+                    <%- post.descrip %>
+                <% } else { %>
+                    <%- theme.descrip %>
+                <% } %>
+            </p>
+        </section>
+        <div id="he-plugin-simple"></div>
+        <!--粘性侧边栏-->
+        <div class="sidesticky">
+            <% if(post.toc||page.toc) {%>
+                <div id="toc" class="toc-article" >
+                    <div class="fa fa-indent" style="margin-bottom: 5px;">
+                        <span class="toc-title"> 目录 </span>
+                    </div>
+                    <div class="toc-container">
+                        <ol class="toc"></ol>
+                    </div>
+                </div>
+            <% } %>
+            <div class="sideimg">
+                <div class="sideimg">
+                    <div id="topbar"></div>                
+                    <div id="hamster"></div>
+                    <div id="bottombar">
+                        <button id="music" onclick="addmusic()">音乐</button>
+                        <button id="mouse" onclick="addmouse()">小仓鼠</button>
+                    </div>
+                    <div class="musicbar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
